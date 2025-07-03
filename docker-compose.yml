@@ -1,21 +1,40 @@
 services:
-  vite-app:
-    # Set the container name
-    container_name: about-me-c
+  frontend-app:
+    container_name: about-me-frontend-c
 
-    # set name for the image
-    image: about-me-i
+    image: about-me-frontend-i
 
-    # Build the image using the Dockerfile in the current context
     build:
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile
 
     ports:
       - "5173:5173"
 
+    working_dir: /app
+
     volumes:
-      - .:/app
+      - ./frontend:/app
       - /app/node_modules
 
     command: npm run dev -- --host
+
+  backend-app:
+    container_name: about-me-backend-c
+
+    image: about-me-backend-i
+
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+
+    ports:
+      - "3000:3000"
+
+    working_dir: /app
+
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+    command: npm run dev 
