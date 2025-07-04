@@ -20,7 +20,7 @@ const About: React.FC = () => {
       id: 1,
       title: 'Personal Portfolio',
       description: 'A responsive developer portfolio built using React, Vite, and TailwindCSS.',
-      technologies: ["React", "Vite", "Tailwind"],
+      tech: ["React", "Vite", "Tailwind"],
       liveUrl: '#',
       githubUrl: '#'
     },
@@ -28,7 +28,7 @@ const About: React.FC = () => {
       id: 2,
       title: 'Task Management App',
       description: 'A task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-      technologies: ['React', 'TypeScript', 'Socket.io', 'Express'],
+      tech: ['React', 'TypeScript', 'Socket.io', 'Express'],
       liveUrl: '#',
       githubUrl: '#'
     }
