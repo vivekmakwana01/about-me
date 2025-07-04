@@ -1,4 +1,22 @@
 services:
+  postgres-db:
+    container_name: about-me-postgres-c
+
+    image: postgres:17-alpine
+
+    restart: always
+
+    environment:
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpass
+      POSTGRES_DB: portfolio
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
   frontend-app:
     container_name: about-me-frontend-c
 
@@ -37,4 +55,7 @@ services:
       - ./backend:/app
       - /app/node_modules
 
-    command: npm run dev 
+    command: npm run dev
+
+volumes:
+  pgdata:
