@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Calendar, CodeIcon, Code, FileText, Zap, Terminal, Cpu, Database } from 'lucide-react';
 import SkillCard from './SkillCard';
 import type { Project, Skill } from '../types';
 import ProjectCard from './ProjectCard';
+import axios from 'axios';
 
 const About: React.FC = () => {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/projects") // docker name, not localhost
+      .then((res) => {
+        setProjects(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch projects:", err);
+        setLoading(false);
+      });
+  }, []);
+
   const skills: Skill[] = [
     { name: 'React', icon: <Code /> },
     { name: 'TypeScript', icon: <FileText /> },
@@ -13,25 +29,6 @@ const About: React.FC = () => {
     { name: 'Tailwind CSS', icon: <Terminal /> },
     { name: 'Node.js', icon: <Cpu /> },
     { name: 'Python', icon: <Database /> }
-  ];
-
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: 'Personal Portfolio',
-      description: 'A responsive developer portfolio built using React, Vite, and TailwindCSS.',
-      tech: ["React", "Vite", "Tailwind"],
-      liveUrl: '#',
-      githubUrl: '#'
-    },
-    {
-      id: 2,
-      title: 'Task Management App',
-      description: 'A task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-      tech: ['React', 'TypeScript', 'Socket.io', 'Express'],
-      liveUrl: '#',
-      githubUrl: '#'
-    }
   ];
 
   return (
@@ -108,11 +105,18 @@ const About: React.FC = () => {
           className="mb-12"
         >
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Featured Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project: Project, index: number) => (
-              <ProjectCard key={project.id} project={project} delay={index * 0.1} />
-            ))}
-          </div>
+          {!loading && projects.length === 0 && (
+            <p className="text-center text-gray-500 dark:text-gray-400">No projects found.</p>
+          )}
+          {loading ? (
+            <p className="text-center text-gray-500 dark:text-gray-400">Loading projects...</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project: Project, index: number) => (
+                <ProjectCard key={project.id} project={project} delay={index * 0.1} />
+              ))}
+            </div>
+          )}
         </motion.div>
 
         <motion.div

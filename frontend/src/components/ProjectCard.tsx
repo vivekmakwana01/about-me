@@ -24,7 +24,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, delay = 0 }) => {
 
         {/* Tags */}
         <div className="flex flex-wrap justify-center gap-2">
-          {project.technologies.map((tech) => (
+          {project.tech.map((tech) => (
             <span
               key={tech}
               className="px-2 py-1 text-xs bg-gray-800 dark:bg-white text-gray-100 dark:text-gray-900 rounded-full"
