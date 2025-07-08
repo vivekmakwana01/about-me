@@ -5,16 +5,30 @@ const seedProjects = async () => {
     {
       title: "Portfolio Website",
       description: "Responsive dev portfolio built with React, Vite, Tailwind.",
-      tech: ["React", "Vite", "Tailwind"],
+      tech: ["React", "Typescript", "Tailwind"],
       live: "https://your-portfolio.vercel.app",
-      github: "https://github.com/your-username/portfolio"
+      github: "https://github.com/vivekmakwana01/about-me"
     },
     {
-      title: "Task Manager App",
-      description: "Real-time app using React, Fastify, and WebSockets.",
-      tech: ["React", "Fastify", "WebSocket"],
-      live: "https://task-app.vercel.app",
-      github: "https://github.com/your-username/task-manager"
+      title: "Volume Step Indicator",
+      description: "A minimal Android utility that displays a floating overlay when volume keys are pressed, showing current volume in a system-wide overlay.",
+      tech: ["Android", "Kotlin"],
+      live: "https://volume-step-indicator.vercel.app",
+      github: "https://github.com/vivekmakwana01/volume-step-indicator"
+    },
+    {
+      title: "PHP Inlline Sql Formatter (VSCode)",
+      description: "A lightweight Visual Studio Code extension that formats SQL queries inside PHP string assignments.",
+      tech: ["Typescript", "VSCode"],
+      live: "https://php-inline-sql-formatter.vercel.app",
+      github: "https://github.com/vivekmakwana01/php-inline-sql-formatter"
+    },
+    {
+      title: "Document Extraction API",
+      description: "This application uses Google's Gemini API to extract structured data from invoices and shipping documents (CMRs).",
+      tech: ["Python", "Google Gemini"],
+      live: "https://php-inline-sql-formatter.vercel.app",
+      github: "https://github.com/vivekmakwana01/Data-Extract"
     }
   ];
 
